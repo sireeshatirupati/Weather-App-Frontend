@@ -5,10 +5,10 @@ searchBtn.addEventListener("click", getWeather);
 cityInput.addEventListener("keypress", (e) => { if(e.key === 'Enter') getWeather(); });
 async function getWeather() {
     const city = cityInput.value.trim();
-    if (!city) { alert("City name enter chey bro!"); return; }
+    if (!city) { alert("Enter city name"); return; }
     try {
         const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`);
-        if (!response.ok) throw new Error("City dorakaledu");
+        if (!response.ok) throw new Error("City not found");
         const data = await response.json();
         document.getElementById("cityName").innerText = data.name;
         document.getElementById("temp").innerText = `${Math.round(data.main.temp)}°C`;
